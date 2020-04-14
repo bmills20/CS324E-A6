@@ -44,5 +44,5 @@ void draw() {
 
 //Add a new bird with a mouse click
 void mousePressed() {
-  flock.addBird(new Bird(mouseX,mouseY));
+  flock1.addBird(new Bird(mouseX,mouseY));
 }
