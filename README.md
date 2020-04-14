@@ -1,1 +1,1 @@
-# CS324E-A6
+Press the Play button to run the program.
