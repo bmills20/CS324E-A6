@@ -1,22 +1,24 @@
 class ParticleSystem {
-  ArrayList<Particle> p_syst;
+  ArrayList<Particle> pSyst = new ArrayList<Particle>();
   PVector origin;
+  String loc;
   
-  ParticleSystem(PVector pos) {
+  //getting position in x,y and relative to the other fountains
+  ParticleSystem(String location, PVector pos) {
     origin = pos.copy();
-    p_syst = new ArrayList<Particle>();
+    loc = location;
   }
   
   void addParticle() {
-    p_syst.add(new Particle(origin));
+    pSyst.add(new Particle(loc,origin));
   }
   
   void run() {
-    for (int i = p_syst.size()-1; i >= 0; i--) {
-      Particle active = p_syst.get(i);
+    for (int i = pSyst.size()-1; i >= 0; i--) {
+      Particle active = pSyst.get(i);
       active.run();
       if (active.isDead()) {
-        p_syst.remove(i);
+        pSyst.remove(i);
       }
     }
   }

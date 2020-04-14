@@ -1,15 +1,19 @@
 PImage bg, basketball, soccer, baseball;
 Flock flock1;
-ParticleSystem spring1;
+ParticleSystem spring1, spring2, spring3, tempSpring, loopSpring;
+ArrayList<ParticleSystem> allSyst;
 Ball b1, b2, b3, b4, b5, b6, b7, b8, b9;
 
 void setup() {
+  allSyst = new ArrayList<ParticleSystem>();
   bg = loadImage("park.png");
   basketball = loadImage("basketball.png");
   soccer = loadImage("soccer.png");
   baseball = loadImage("baseball.png");
   //(Edited) cartoon in the public domain: https://www.publicdomainpictures.net/en/view-image.php?image=291556&picture=reading-in-park
-  spring1 = new ParticleSystem(new PVector(300, 570));
+  spring2 = new ParticleSystem("side",new PVector(315, 570, 0.0));
+  spring3 = new ParticleSystem("side",new PVector(135, 570, 0.0));
+  spring1 = new ParticleSystem("mid",new PVector(225, 600, 0.0));
   b1 = new Ball(30, 0.9, 0.7);
   b2 = new Ball(30, 0.9, 0.7);
   b3 = new Ball(30, 0.9, 0.7);
@@ -28,8 +32,21 @@ void setup() {
 
 void draw() {
   background(bg);
+  flock1.run();
+  spring1.addParticle();
   spring1.addParticle();
   spring1.run();
+  spring2.addParticle();
+  spring2.run();
+  spring3.addParticle();
+  spring3.run();
+  
+  for (int z = allSyst.size()-1; z >= 0; z--) {
+    loopSpring = allSyst.get(z);
+    loopSpring.addParticle();
+    loopSpring.run();
+  }
+  
   b1.update(basketball);
   b2.update(basketball);
   b3.update(basketball);
@@ -39,7 +56,6 @@ void draw() {
   b7.update(baseball);
   b8.update(baseball);
   b9.update(baseball);
-  flock1.run();
 }
 
 //Add a new bird with a mouse click
