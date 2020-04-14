@@ -41,3 +41,8 @@ void draw() {
   b9.update(baseball);
   flock1.run();
 }
+
+//Add a new bird with a mouse click
+void mousePressed() {
+  flock.addBird(new Bird(mouseX,mouseY));
+}
